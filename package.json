@@ -1,0 +1,29 @@
+{
+  "name": "js-xlsx-range",
+  "version": "0.0.1",
+  "description": "A wrapper for js-xlsx with getters",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scimonster/js-xlsx-range.git"
+  },
+  "keywords": [
+    "spreadsheet",
+    "xlsx",
+    "excel",
+    "xls"
+  ],
+  "author": "Scimonster",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Scimonster/js-xlsx-range/issues"
+  },
+  "homepage": "https://github.com/Scimonster/js-xlsx-range#readme",
+  "dependencies": {
+    "lodash": "^4.16.2",
+    "xlsx": "^0.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.6.1"
+  }
+}
