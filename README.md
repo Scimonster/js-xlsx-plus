@@ -34,6 +34,24 @@ Returns a `Column` object.
 
 Returns a subset `Worksheet`. Keeps references to the original workbook and name.
 
+#### `toJSON(opts)`
+
+Exports the sheet as JSON. The default format is to use the first row as a header. To use column names as a header, pass `{header: 'A'}`. To use custom values, pass `{header: ['col1 header', 'col2 header']}`. The exported format is: `[{'col1 header': B1Value, 'col2 header': B2Value}, ...]`.
+
+It automatically transforms values to their primitive formats. To disable this, pass `{raw: false}`.
+
+#### `toArray(opts)`
+
+Like `toJSON`, but returns an array of arrays instead of an array of objects. So: `[[A1Value, A2Value], [B1Value, B2Value], ...]`.
+
+#### `toCSV(opts)`
+
+Returns a CSV string of the worksheet. Default delimiter is a comma; default row ending is a newline. You can change this by passing `{delimiter: '\t', line: '\r\n'}` (for example).
+
+### `Workbook` API
+
+Not much. Only contains wrappers for `toJSON` and `toArray`. `toJSON` gives an object with the sheet names as keys; `toArray` gives an array of sheets. The values are the result of calling `toJSON` or `toArray` on the sheet object.
+
 ### `Row` and `Column` object API
 
 Both are subclasses of a `Data` class; neither are exported.
