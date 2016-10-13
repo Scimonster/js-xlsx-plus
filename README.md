@@ -1,5 +1,9 @@
-# js-xlsx-range
+# xlsx-plus
 A wrapper for [js-xlsx](https://github.com/SheetJS/js-xlsx) with a simpler API. Can be used as a dropin.
+
+```
+npm install xlsx-plus
+```
 
 
 ## Changes
@@ -63,3 +67,17 @@ Returns the cell object at the given row or column (depending on datatype) if `a
 #### `getValues()`
 
 Returns an array of cell *values*.
+
+## License
+
+MIT
+
+## Maintenance Notes
+
+This is just the bare bones of the library now. I needed this much for a project, and don't have time to continue working on it past this. Pull requests are appreciated.
+
+## Credits
+
+Made by Eyal Schachter (Scimonster).
+
+Developed for David Burg at the Shamir Research Institute.
