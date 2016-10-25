@@ -12,7 +12,13 @@ npm install xlsx-plus
 
 - `read` returns a `Workbook` object; each sheet is a `Worksheet` object
 
-- `utils` is duplicated as `util`; `utils` has extra function `cell_in_range`
+### Utils
+
+`utils` is duplicated as `util`.
+
+- extra function `cell_in_range`
+
+- `encode_cell` accepts an object with string keys as well
 
 ### `Worksheet` API
 
@@ -80,4 +86,4 @@ This is just the bare bones of the library now. I needed this much for a project
 
 Made by Eyal Schachter (Scimonster).
 
-Developed for David Burg at the Shamir Research Institute.
+Developed for David Burg, PhD at the Shamir Research Institute.
