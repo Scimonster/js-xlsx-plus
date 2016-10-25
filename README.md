@@ -46,7 +46,7 @@ Returns a subset `Worksheet`. Keeps references to the original workbook and name
 
 #### `toJSON(opts)`
 
-Exports the sheet as JSON. The default format is to use the first row as a header. To use column names as a header, pass `{header: 'A'}`. To use custom values, pass `{header: ['col1 header', 'col2 header']}`. The exported format is: `[{'col1 header': B1Value, 'col2 header': B2Value}, ...]`.
+Exports the sheet as JSON. The default format is to use the first row as a header. To use column names as a header, pass `{header: 'A'}`. To use custom values, pass `{header: ['col1 header', 'col2 header']}`. The exported format is: `[{'col1 header': B1Value, 'col2 header': B2Value}, ...]`. For an object of arrays (`{col1: [B1, C1, ...], col2: [...]}`), pass `{array: false}` (any falsey value).
 
 It automatically transforms values to their primitive formats. To disable this, pass `{raw: false}`.
 
