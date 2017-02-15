@@ -17525,6 +17525,6 @@ module.exports = Worksheet;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],13:[function(require,module,exports){
 module.exports={
-  "version": "0.1.1"
+  "version": "0.1.2"
 }
 },{}]},{},[3]);

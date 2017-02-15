@@ -5,7 +5,7 @@ A wrapper for [js-xlsx](https://github.com/SheetJS/js-xlsx) with a simpler API. 
 npm install xlsx-plus
 ```
 
-A version for the browser is in the dist folder.
+Versions for the browser are in the dist folder. There is the core version, which is a smaller file, and the full version, which includes ODS and international support.
 
 
 ## Changes
