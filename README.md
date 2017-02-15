@@ -5,6 +5,8 @@ A wrapper for [js-xlsx](https://github.com/SheetJS/js-xlsx) with a simpler API. 
 npm install xlsx-plus
 ```
 
+A version for the browser is in the dist folder.
+
 
 ## Changes
 
@@ -61,6 +63,10 @@ Returns a CSV string of the worksheet. Default delimiter is a comma; default row
 ### `Workbook` API
 
 Not much. Only contains wrappers for `toJSON` and `toArray`. `toJSON` gives an object with the sheet names as keys; `toArray` gives an array of sheets. The values are the result of calling `toJSON` or `toArray` on the sheet object.
+
+#### `addSheet(sheet)`
+
+Adds a Worksheet object to the workbook. As of 0.1.2.
 
 ### `Row` and `Column` object API
 
