@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 const browserify = require('browserify');
 const aliasify = require('aliasify');
-const babelify = require('babelify');
 const packageJsonVersionify = require('package-json-versionify');
 const uglifyjs = require('uglify-js');
 const fs = require('fs');
@@ -12,7 +11,6 @@ function compile(outFileName, outFileNameMin, xlsxVersion) {
 
     const b = browserify({debug:false});
     b.add(require.resolve('./lib/client.js'), {entry: true});
-    b.transform(babelify, {presets: ['es2015']});
     b.transform(aliasify, {
         aliases: {
             xlsx: './browser-xlsx'

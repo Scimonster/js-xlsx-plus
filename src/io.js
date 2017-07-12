@@ -1,10 +1,9 @@
 "use strict"; // eslint-disable-line quotes
+const XLSX = require('xlsx');
+const _ = require('lodash');
+const fs = require('fs');
 
-var XLSX = require('xlsx');
-var _ = require('lodash');
-var fs = require('fs');
-
-var Workbook = require('./workbook');
+const Workbook = require('./workbook');
 
 function read(data, options) {
     return new Workbook(XLSX.read(data, options));
@@ -17,18 +16,16 @@ function readFileSync(filename, options) {
 exports.readFileSync = readFileSync;
 
 function readFile(filename, options, cb) {
-    if (_.isFunction(options)) {
-        // readFile(filename, cb)
+    if (_.isFunction(options)) { // readFile(filename, cb)
         cb = options;
         options = undefined;
     }
-    if (!_.isFunction(cb)) {
-        // readFile(filename, [options])
+    if (!_.isFunction(cb)) { // readFile(filename, [options])
         // for compatibility
         return readFileSync(filename, options);
     }
-    // readFile(filename, [options], cb)
-    fs.readFile(filename, function (err, data) {
+     // readFile(filename, [options], cb)
+    fs.readFile(filename, function(err, data){
         if (err) {
             return cb(err);
         }

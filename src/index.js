@@ -1,11 +1,10 @@
 "use strict"; // eslint-disable-line quotes
+const XLSX = require('xlsx');
+const _ = require('lodash');
 
-var XLSX = require('xlsx');
-var _ = require('lodash');
-
-var io = require('./io');
-var Worksheet = require('./worksheet');
-var Workbook = require('./workbook');
+const io = require('./io');
+const Worksheet = require('./worksheet');
+const Workbook = require('./workbook');
 
 _.extend(exports, XLSX);
 exports.version = require('../package.json').version;
