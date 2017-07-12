@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/Scimonster/js-xlsx-plus#readme",
   "dependencies": {
-    "lodash": "^4.16.2",
-    "xlsx": "^0.8.0"
+    "lodash": "^4.17.4",
+    "xlsx": "0.10.8"
   },
   "devDependencies": {
     "aliasify": "^2.1.0",
