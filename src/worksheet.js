@@ -10,35 +10,11 @@ class Worksheet {
         if (data['!ref']) {
             _.extend(this, data);
         } else if (_.isArray(data)) {
-            let maxLength = 0;
-            data.forEach((row, r)=>{
-                row.forEach((cell, c)=>{
-                    let t;
-                    switch (typeof cell) {
-                        case 'string':
-                            t = 's';
-                            break;
-                        case 'number':
-                            t = 'n';
-                            break;
-                        case 'boolean':
-                            t = 'b';
-                            break;
-                        case 'object':
-                            if (_.isDate(cell)) {
-                                t = 'd';
-                                break;
-                            }
-                            // else falls through
-                        default:
-                            t = 's';
-                            break;
-                    }
-                    this[util.encode_cell({c, r})] = _.isObject(cell) ? cell : {v: cell, t};
-                });
-                maxLength = Math.max(maxLength, row.length-1);
-            });
-            this['!ref'] = util.encode_range({s: util.decode_cell('A1'), e: {c: maxLength, r: Math.max(data.length-1,0)}});
+            if (_.isArray(data[0])) {
+                _.extend(this, util.aoa_to_sheet(data));
+            } else {
+                _.extend(this, util.json_to_sheet(data));
+            }
         }
 
         this.name = name;

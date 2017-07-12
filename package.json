@@ -33,6 +33,6 @@
     "uglify-js": "^2.7.5"
   },
   "scripts": {
-    "build": "babel src --out-dir lib --presets=es2015 && node compile"
+    "build": "ls -l dist && babel src --out-dir lib --presets=es2015 && node compile && ls -l dist"
   }
 }

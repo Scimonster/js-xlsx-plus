@@ -28,7 +28,7 @@ Exported as XLSX.Worksheet.
 
 #### `constructor(data, name, workbook)`
 
-Accepts data either as an XLSX-style object (with a `!ref` property), or an array of arrays.
+Accepts data as an XLSX-style object (with a `!ref` property), an array of arrays, or an array of objects.
 
 #### `getCell(address)`
 
