@@ -1,6 +1,6 @@
 {
   "name": "xlsx-plus",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A wrapper for js-xlsx with an improved API",
   "main": "lib/index.js",
   "repository": {
