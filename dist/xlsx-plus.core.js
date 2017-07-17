@@ -207,6 +207,58 @@ function readFile(filename, options, cb) {
     });
 }
 exports.readFile = readFile;
+
+function readFileAsync(filename, options, cb) {
+    if (_.isFunction(options)) {
+        // readFileAsync(filename, cb)
+        cb = options;
+        options = undefined;
+    }
+    if (_.isFunction(cb)) {
+        // readFileAsync(filename, [options], cb)
+        // future compatibility, in case xlsx adds a callback style readFileAsync
+        return readFile(filename, options, cb);
+    }
+    // readFileAsync(filename, [options])
+    return new Promise(function (resolve, reject) {
+        fs.readFile(filename, function (err, data) {
+            if (err) {
+                return reject(err);
+            }
+            resolve(read(data, options));
+        });
+    });
+}
+exports.readFileAsync = readFileAsync;
+
+function writeFileAsync(filename, wb, options, cb) {
+    if (filename instanceof Workbook) {
+        // writeFileAsync(wb, filename, [options], [cb])
+        var _wb = filename;
+        filename = wb;
+        wb = _wb;
+    }
+    if (_.isFunction(options)) {
+        // writeFileAsync(filename, wb, cb)
+        cb = options;
+        options = undefined;
+    }
+    if (_.isFunction(cb)) {
+        // writeFileAsync(filename, wb, [options], cb)
+        // compatibility
+        return XLSX.writeFileAsync(filename, wb, options, cb);
+    }
+    // writeFileAsync(filename, wb, [options])
+    return new Promise(function (resolve, reject) {
+        XLSX.writeFileAsync(filename, wb, options, function (err) {
+            if (err) {
+                return reject(err);
+            }
+            resolve();
+        });
+    });
+}
+exports.writeFileAsync = writeFileAsync;
 },{"./../browser-xlsx":1,"./workbook":9,"fs":11,"lodash":12}],7:[function(require,module,exports){
 "use strict"; // eslint-disable-line quotes
 
@@ -335,8 +387,16 @@ var Workbook = function () {
     }
 
     _createClass(Workbook, [{
+        key: 'getSheet',
+        value: function getSheet(nameOrIndex) {
+            return this.Sheets[nameOrIndex] || this.Sheets[this.SheetNames[nameOrIndex]];
+        }
+    }, {
         key: 'addSheet',
         value: function addSheet(ws) {
+            if (!ws.name) {
+                ws.name = 'Sheet' + (this.SheetNames.length + 1);
+            }
             this.SheetNames.push(ws.name);
             this.Sheets[ws.name] = ws;
             ws._workbook = this;
@@ -17594,6 +17654,6 @@ module.exports = Worksheet;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],13:[function(require,module,exports){
 module.exports={
-  "version": "0.2.0"
+  "version": "0.3.0"
 }
 },{}]},{},[3]);

@@ -1,3 +1,9 @@
+## v0.3.0 - 2017/07/17
+
+ - Add `XLSX.readFileAsync` and `XLSX.writeFileAsync` to support Promises
+ - Add `Workbook#getSheet(nameOrIndex)`
+ - Modify `Workbook#addSheet` to handle the sheet having no name
+
 ## v0.2.0 - 2017/07/12
 
  - Update XLSX version to 0.10.8
