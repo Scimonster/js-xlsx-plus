@@ -24,7 +24,7 @@ function readFile(filename, options, cb) {
         // for compatibility
         return readFileSync(filename, options);
     }
-     // readFile(filename, [options], cb)
+    // readFile(filename, [options], cb)
     fs.readFile(filename, function(err, data){
         if (err) {
             return cb(err);
@@ -33,3 +33,50 @@ function readFile(filename, options, cb) {
     });
 }
 exports.readFile = readFile;
+
+function readFileAsync(filename, options, cb) {
+    if (_.isFunction(options)) { // readFileAsync(filename, cb)
+        cb = options;
+        options = undefined;
+    }
+    if (_.isFunction(cb)) { // readFileAsync(filename, [options], cb)
+        // future compatibility, in case xlsx adds a callback style readFileAsync
+        return readFile(filename, options, cb);
+    }
+    // readFileAsync(filename, [options])
+    return new Promise(function(resolve, reject) {
+        fs.readFile(filename, function(err, data){
+            if (err) {
+                return reject(err);
+            }
+            resolve(read(data, options));
+        });
+    });
+}
+exports.readFileAsync = readFileAsync;
+
+function writeFileAsync(filename, wb, options, cb) {
+    if (filename instanceof Workbook) { // writeFileAsync(wb, filename, [options], [cb])
+        const _wb = filename;
+        filename = wb;
+        wb = _wb;
+    }
+    if (_.isFunction(options)) { // writeFileAsync(filename, wb, cb)
+        cb = options;
+        options = undefined;
+    }
+    if (_.isFunction(cb)) { // writeFileAsync(filename, wb, [options], cb)
+        // compatibility
+        return XLSX.writeFileAsync(filename, wb, options, cb);
+    }
+    // writeFileAsync(filename, wb, [options])
+    return new Promise(function(resolve, reject) {
+        XLSX.writeFileAsync(filename, wb, options, function(err){
+            if (err) {
+                return reject(err);
+            }
+            resolve();
+        });
+    });
+}
+exports.writeFileAsync = writeFileAsync;

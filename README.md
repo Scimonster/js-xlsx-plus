@@ -7,12 +7,31 @@ npm install xlsx-plus
 
 Versions for the browser are in the dist folder. There is the core version, which is a smaller file, and the full version, which includes ODS and international support.
 
+It supports Promise-based I/O. Bring your own Promise (assumes the presence of a correctly-implemented `Promise` global).
+
 
 ## Changes
 
-- `readFile` supports an asynchronous signature while retaining support for operating synchronously
+### Top-level API
 
-- `read` returns a `Workbook` object; each sheet is a `Worksheet` object
+The entire XLSX top-level API is copied, with some changed and additions:
+
+#### `read(data, [options])`
+
+Returns a `Workbook` object; each sheet is a `Worksheet` object
+
+#### `readFile(filename, [options], [cb])`
+
+Supports an asynchronous signature while retaining support for operating synchronously
+
+#### `readFileAsync(filename, [options], [cb])` (added v0.3.0)
+
+Explicitly asynchronous version. If the callback is not supplied it returns a Promise (requires `Promise` global).
+
+### `writeFileAsync(filename, wb, [options], [cb])`
+### `writeFileAsync(wb, filename, [options], [cb])` (added v0.3.0)
+
+Returns a Promise if callback is not passed. Also supports passing a Workbook object as the first parameter, to match the built-in `writeFile(wb, filename, [options])`.
 
 ### Utils
 
@@ -64,9 +83,9 @@ Returns a CSV string of the worksheet. Default delimiter is a comma; default row
 
 Not much. Only contains wrappers for `toJSON` and `toArray`. `toJSON` gives an object with the sheet names as keys; `toArray` gives an array of sheets. The values are the result of calling `toJSON` or `toArray` on the sheet object.
 
-#### `addSheet(sheet)`
+#### `addSheet(sheet)` (added v0.1.2)
 
-Adds a Worksheet object to the workbook. As of 0.1.2.
+Adds a Worksheet object to the workbook.
 
 ### `Row` and `Column` object API
 
