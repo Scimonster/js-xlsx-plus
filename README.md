@@ -83,9 +83,15 @@ Returns a CSV string of the worksheet. Default delimiter is a comma; default row
 
 Not much. Only contains wrappers for `toJSON` and `toArray`. `toJSON` gives an object with the sheet names as keys; `toArray` gives an array of sheets. The values are the result of calling `toJSON` or `toArray` on the sheet object.
 
+#### `getSheet(nameOrIndex)` (added v0.3.0)
+
+Return the sheet with the given name or index. So you can do `getSheet(0)` to get the first one.
+
 #### `addSheet(sheet)` (added v0.1.2)
 
 Adds a Worksheet object to the workbook.
+
+As of v0.3.0, if the sheet does not have a name, it will be given a default name (SheetN).
 
 ### `Row` and `Column` object API
 

@@ -13,8 +13,15 @@ class Workbook {
             this.Sheets = {};
         }
     }
-    
+
+    getSheet(nameOrIndex) {
+        return this.Sheets[nameOrIndex] || this.Sheets[this.SheetNames[nameOrIndex]];
+    }
+
     addSheet(ws) {
+        if (!ws.name) {
+            ws.name = 'Sheet' + (this.SheetNames.length+1);
+        }
         this.SheetNames.push(ws.name);
         this.Sheets[ws.name] = ws;
         ws._workbook = this;
